@@ -62,14 +62,14 @@ app.use(upload());
 app.use(methodOverride("_method"));
 
 // HANDLEBAR HELPERS
-const { select, isEqual, formatDate } = require("./helpers/helpers");
+const { select, isEqual, isEqual2, formatDate } = require("./helpers/helpers");
 
 // SET TEMPLATING ENGINE
 app.engine(
   "handlebars",
   exphbs({
     defaultLayout: "guest",
-    helpers: { select, isEqual, formatDate }
+    helpers: { select, isEqual, isEqual2, formatDate }
   })
 );
 app.set("view engine", "handlebars");
@@ -83,6 +83,7 @@ const userIndex = require("./routes/user/index");
 const userJobs = require("./routes/user/jobs");
 const guestJobs = require("./routes/guest/jobs");
 const userUsers = require("./routes/user/users");
+const guestUsers = require("./routes/guest/users");
 
 // USE ROUTES
 // app.use("/admin", admin);
@@ -93,6 +94,7 @@ app.use("/", userIndex);
 app.use("/jobs", userJobs);
 app.use("/jobs", guestJobs);
 app.use("/users", userUsers);
+app.use("/users", guestUsers);
 
 // STATIC DIRECTORY
 app.use(express.static(path.join(__dirname, "public")));

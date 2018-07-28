@@ -12,11 +12,20 @@ module.exports = {
   },
 
   // compare value
-  isEqual: (a, b, option) => {
+  isEqual: (a, b, options) => {
     if (a == b) {
-      return option.fn(this);
+      return options.fn(this);
     } else {
-      return option.inverse(this);
+      return options.inverse(this);
+    }
+  },
+
+  // compare value. USE THIS ISTEAD! FUCK ARROWFUNCTIONS!!!!
+  isEqual2: function(a, b, options) {
+    if (a == b) {
+      return options.fn(this);
+    } else {
+      return options.inverse(this);
     }
   },
 

@@ -1,0 +1,26 @@
+<div class="container my-3">
+    {{#if employerProfile}}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card sticky-top mb-3">
+                <img src="{{employerProfile.image}}" alt="{{employerProfile.user.name}}" class="card-img-top">
+                <div class="card-body">
+                    <p class="mb-0">{{employerProfile.address}}</p>
+                    {{#if employerProfile.website}}
+                    <p class="mb-0">{{employerProfile.website}}</p>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 pl-md-1">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="text-capitalize mb-0">{{employerProfile.user.name}}</h4>
+                    <span>{{employerProfile.field}}</span>
+                    <p class="mt-2">{{employerProfile.about}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}} Employee Profile not found {{/if}}
+</div>

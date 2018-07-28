@@ -16,13 +16,13 @@
     <!-- /check method -->
 
     <!-- check if user role is employer -->
-    {{#isEqual user.role "employer"}}
+    {{#isEqual2 user.role "employer"}}
     <a href="/jobs/employer" class="list-group-item list-group-item-action">My Job Posts</a>
     <a href="/jobs/employer/create" class="list-group-item list-group-item-action pl-5">Create Job Post</a>
-    <a href="/profile" class="list-group-item list-group-item-action">Profile</a>
+    <a href="/users/employer/profile/{{user.id}}" class="list-group-item list-group-item-action">Profile</a>
     <a href="/users/employer/profile/build" class="list-group-item list-group-item-action pl-5">Build Profile</a>
     <a href="/account" class="list-group-item list-group-item-action">Account</a>
-    {{/isEqual}}
+    {{/isEqual2}}
     <!-- /check method -->
 
     <!-- check if user role is applicant -->

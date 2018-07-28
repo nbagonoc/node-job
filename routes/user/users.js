@@ -22,8 +22,6 @@ router.post("/employer/profile/build", (req, res) => {
   // validator
   req.checkBody("address", "Address is required").notEmpty();
   req.checkBody("field", "Field is required").notEmpty();
-  //   req.checkBody("website", "Is not a valid URL").notEmpty();
-  //   req.checkBody("website", "Is not a valid URL").isURL();
   req.checkBody("about", "About is required").notEmpty();
 
   const errors = req.validationErrors();
@@ -67,7 +65,7 @@ router.patch("/employer/profile/build/:id", (req, res) => {
     employerProfile.field = req.body.field;
     employerProfile.website = req.body.website;
     employerProfile.image = req.body.image;
-    employerProfile.about = req.body.address;
+    employerProfile.about = req.body.about;
 
     // validator
     req.checkBody("address", "Address is required").notEmpty();
@@ -82,7 +80,7 @@ router.patch("/employer/profile/build/:id", (req, res) => {
         address,
         field,
         website,
-        image,
+        image: "http://via.placeholder.com/250x200",
         about
       });
     } else {

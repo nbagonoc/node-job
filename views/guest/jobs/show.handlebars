@@ -1,10 +1,10 @@
 <div class="container my-3">
     {{#if job}}
     <div class="row">
-        <div class="col-md-8 mb-3">
+        <div class="col-md-8 mb-3 pr-md-1">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="text-capitalize m-0 text-success">{{job.title}}</h3>
+                    <h3 class="text-capitalize m-0">{{job.title}}</h3>
                     <span class="text-muted small">By:
                         <a href="#" class="text-capitalize text-success">{{job.user.name}}</a> On: {{formatDate job.date 'MM/DD/YY'}}</span>
                     <br>
@@ -23,14 +23,15 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card">
+            <div class="card sticky-top">
                 <img src="{{employerProfile.image}}" alt="{{job.user.name}}" class="card-img-top">
                 <div class="card-body">
                     <a href="" class="text-success">
                         <h5 class="text-capitalize mb-0">{{job.user.name}}</h5>
                     </a>
-                    <span class="badge badge-secondary py-1 px-2">{{employerProfile.field}}</span>
-                    <span class="badge badge-secondary py-1 px-2">{{employerProfile.website}}</span>
+                    <span class="">{{employerProfile.field}}</span>
+                    <br>
+                    <span class="">{{employerProfile.website}}</span>
                     <p class="mt-2">{{employerProfile.about}}</p>
                 </div>
             </div>
