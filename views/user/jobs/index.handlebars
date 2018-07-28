@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="card-header">
+        Your job posting
+    </div>
+    <div class="card-body">
+        {{!-- {{#if jobs}} --}}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Job Title</th>
+                    <th>Type</th>
+                    <th>Date Posted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each jobs}}
+                <tr>
+                    <td class="align-middle text-capitalize">{{title}}</td>
+                    <td class="align-middle text-capitalize">{{type}}</td>
+                    <td class="align-middle">{{formatDate date 'MM/DD/YY'}}</td>
+                    <td>
+                        <a href="/jobs/{{id}}" class="btn btn-success btn-sm">View</a>
+                        <a href="/jobs/employer/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{!-- {{else}} No job postings {{/if}} --}}
+    </div>
+</div>

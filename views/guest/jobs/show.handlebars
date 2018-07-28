@@ -1,0 +1,40 @@
+<div class="container my-3">
+    {{#if job}}
+    <div class="row">
+        <div class="col-md-8 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="text-capitalize m-0 text-success">{{job.title}}</h3>
+                    <span class="text-muted small">By:
+                        <a href="#" class="text-capitalize text-success">{{job.user.name}}</a> On: {{formatDate job.date 'MM/DD/YY'}}</span>
+                    <br>
+                    <span class="badge badge-secondary py-1 px-2">{{job.salary}}</span>
+                    <span class="badge badge-secondary py-1 px-2">{{job.type}}</span>
+                    <span class="badge badge-secondary py-1 px-2">{{job.location}}</span>
+                    <span class="badge badge-secondary py-1 px-2">{{job.category}}</span>
+                    <hr> {{!--
+                    <a href="#" class="btn btn-success btn-sm">Apply</a> --}}
+                    <a href="#" class="btn btn-success btn-sm">Sign-in to apply</a>
+                    <a href="#" class="btn btn-info btn-sm">Company profile</a>
+                    <a href="#" class="btn btn-primary btn-sm">Other job post by employer</a>
+                    <hr>
+                    <p>{{job.description}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{employerProfile.image}}" alt="{{job.user.name}}" class="card-img-top">
+                <div class="card-body">
+                    <a href="" class="text-success">
+                        <h5 class="text-capitalize mb-0">{{job.user.name}}</h5>
+                    </a>
+                    <span class="badge badge-secondary py-1 px-2">{{employerProfile.field}}</span>
+                    <span class="badge badge-secondary py-1 px-2">{{employerProfile.website}}</span>
+                    <p class="mt-2">{{employerProfile.about}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}} Job post not found {{/if}}
+</div>

@@ -1,0 +1,35 @@
+<div class="list-group sticky-top mb-3">
+    <a href="/dashboard" class="list-group-item list-group-item-action">Dashboard</a>
+
+    <!-- check if user role is admin -->
+    {{#isEqual user.role "admin"}}
+    <a href="/jobs/manage" class="list-group-item list-group-item-action">Manage Jobs</a>
+    <a href="/users/manage" class="list-group-item list-group-item-action">Manage Users</a>
+    {{/isEqual}}
+    <!-- /check method -->
+
+    <!-- check if user role is moderator -->
+    {{#isEqual user.role "moderator"}}
+    <a href="/jobs/manage" class="list-group-item list-group-item-action">Manage Jobs</a>
+    <a href="/users/manage" class="list-group-item list-group-item-action">Manage Users</a>
+    {{/isEqual}}
+    <!-- /check method -->
+
+    <!-- check if user role is employer -->
+    {{#isEqual user.role "employer"}}
+    <a href="/jobs/employer" class="list-group-item list-group-item-action">My Job Posts</a>
+    <a href="/jobs/employer/create" class="list-group-item list-group-item-action pl-5">Create Job Post</a>
+    <a href="/profile" class="list-group-item list-group-item-action">Profile</a>
+    <a href="/users/employer/profile/build" class="list-group-item list-group-item-action pl-5">Build Profile</a>
+    <a href="/account" class="list-group-item list-group-item-action">Account</a>
+    {{/isEqual}}
+    <!-- /check method -->
+
+    <!-- check if user role is applicant -->
+    {{#isEqual user.role "applicant"}}
+    <a href="/jobs/applicant" class="list-group-item list-group-item-action">My Job Applications</a>
+    <a href="/profile" class="list-group-item list-group-item-action">Profile</a>
+    <a href="/account" class="list-group-item list-group-item-action">Account</a>
+    {{/isEqual}}
+    <!-- /check method -->
+</div>

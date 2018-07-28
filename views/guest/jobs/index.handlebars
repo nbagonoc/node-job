@@ -1,0 +1,71 @@
+<div class="container my-3">
+    {{#if jobs}}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="sticky-top">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Browse by Category
+                    </div>
+                    <div class="card-body">
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample again</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Browse by Location
+                    </div>
+                    <div class="card-body">
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample again</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                        <span class="badge badge-secondary py-1 px-2">sample</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 mb-3">
+            <div class="list-group">
+                {{#each jobs}}
+                <div class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-2 px-2">
+                            <img src="http://via.placeholder.com/250x200" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-md-10 px-2">
+                            <a href="jobs/{{id}}" class="text-success">
+                                <h4 class="text-capitalize mb-0">{{title}}</h4>
+                            </a>
+                            <span class="text-muted small">By:
+                                <a href="#" class="text-capitalize text-success">{{user.name}}</a> On: {{formatDate job.date 'MM/DD/YY'}}</span>
+                            <br>
+                            <span class="badge badge-secondary py-1 px-2">{{salary}}</span>
+                            <span class="badge badge-secondary py-1 px-2">{{type}}</span>
+                            <span class="badge badge-secondary py-1 px-2">{{location}}</span>
+                            <span class="badge badge-secondary py-1 px-2">{{category}}</span>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    {{else}} Job post not found {{/if}}
+</div>
