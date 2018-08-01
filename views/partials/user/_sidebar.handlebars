@@ -28,7 +28,8 @@
     <!-- check if user role is applicant -->
     {{#isEqual user.role "applicant"}}
     <a href="/jobs/applicant" class="list-group-item list-group-item-action">My Job Applications</a>
-    <a href="/profile" class="list-group-item list-group-item-action">Profile</a>
+    <a href="/users/applicant/profile/{{user.id}}" class="list-group-item list-group-item-action">Profile</a>
+    <a href="/users/applicant/profile/build" class="list-group-item list-group-item-action pl-5">Build Profile</a>
     <a href="/account" class="list-group-item list-group-item-action">Account</a>
     {{/isEqual}}
     <!-- /check method -->

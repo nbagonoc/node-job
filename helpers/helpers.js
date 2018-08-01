@@ -12,7 +12,7 @@ module.exports = {
   },
 
   // compare value
-  isEqual: (a, b, options) => {
+  isEqual: function(a, b, options) {
     if (a == b) {
       return options.fn(this);
     } else {

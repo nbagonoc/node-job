@@ -6,33 +6,50 @@
                 <div class="card-body">
                     <h3 class="text-capitalize m-0">{{job.title}}</h3>
                     <span class="text-muted small">By:
-                        <a href="#" class="text-capitalize text-success">{{job.user.name}}</a> On: {{formatDate job.date 'MM/DD/YY'}}</span>
+                        <a href="/users/employer/profile/{{job.user.id}}" class="text-capitalize text-success">{{job.user.name}}</a> On: {{formatDate job.date 'MM/DD/YY'}}</span>
                     <br>
                     <span class="badge badge-secondary py-1 px-2">{{job.salary}}</span>
                     <span class="badge badge-secondary py-1 px-2">{{job.type}}</span>
                     <span class="badge badge-secondary py-1 px-2">{{job.location}}</span>
                     <span class="badge badge-secondary py-1 px-2">{{job.category}}</span>
-                    <hr> {{!--
-                    <a href="#" class="btn btn-success btn-sm">Apply</a> --}}
-                    <a href="#" class="btn btn-success btn-sm">Sign-in to apply</a>
-                    <a href="#" class="btn btn-info btn-sm">Company profile</a>
-                    <a href="#" class="btn btn-primary btn-sm">Other job post by employer</a>
                     <hr>
-                    <p>{{job.description}}</p>
+                    <p class="font-weight-light mb-0">{{job.description}}</p>
+                    {{#if user}} {{#isEqual user.role "employer"}} {{#isEqual job.user.id user.id}}
+                    <hr>
+                    <a href="http://" class="btn btn-success btn-sm">Edit</a>
+                    <a href="http://" class="btn btn-danger btn-sm">Delete</a>
+                    {{/isEqual}} {{/isEqual}} {{#isEqual user.role "applicant"}} {{#if applicant.user.id}}
+                    <hr>
+                    <span>You have already applied to this job post.
+                        <a href="http://" class="text-success">View status</a> of your application.
+                    </span>
+                    {{else}}
+                    <hr>
+                    <form action="/applications/apply/{{job.id}}" method="post">
+                        <div class="form-group">
+                            <label for="body">Apply to job post</label>
+                            <textarea type="text" rows="5" name="body" class="form-control" placeholder="Introduce yourself (maximum of 500 characters)">{{body}}</textarea>
+                        </div>
+                        <input type="submit" value="Apply Now" class="btn btn-success btn-sm">
+                    </form>
+                    {{/if}}{{/isEqual}} {{else}}
+                    <hr>
+                    <a href="/applicant/login" class="btn btn-success btn-sm">Sign-in to apply</a>
+                    {{/if}}
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card sticky-top">
+            <div class="card">
                 <img src="{{employerProfile.image}}" alt="{{job.user.name}}" class="card-img-top">
                 <div class="card-body">
-                    <a href="" class="text-success">
+                    <a href="/users/employer/profile/{{job.user.id}}" class="text-success">
                         <h5 class="text-capitalize mb-0">{{job.user.name}}</h5>
                     </a>
-                    <span class="">{{employerProfile.field}}</span>
+                    <span class="text-muted small">{{employerProfile.field}}</span>
                     <br>
-                    <span class="">{{employerProfile.website}}</span>
-                    <p class="mt-2">{{employerProfile.about}}</p>
+                    <span class="text-muted small">{{employerProfile.website}}</span>
+                    <p class="mt-2 font-weight-light">{{employerProfile.about}}</p>
                 </div>
             </div>
         </div>

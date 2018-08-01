@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const User = require("../../models/User");
 const EmployerProfile = require("../../models/EmployerProfile");
+const ApplicantProfile = require("../../models/ApplicantProfile");
 
 // change the main layout to user, isntead of the main layout
 router.all("/*", (req, res, next) => {
@@ -8,11 +10,38 @@ router.all("/*", (req, res, next) => {
   next();
 });
 
-// GET | display the create user  profile
+// GET | display the create employer profile
 router.get("/employer/profile/build", (req, res) => {
   EmployerProfile.findOne({ user: req.user.id }).then(employerProfile => {
     res.render("user/employers/profiles/build", { employerProfile });
   });
+});
+
+// GET | display the create applicant profile
+router.get("/applicant/profile/build", (req, res) => {
+  ApplicantProfile.findOne({ user: req.user.id }).then(applicantProfile => {
+    res.render("user/applicants/profiles/build", { applicantProfile });
+  });
+});
+
+// GET | display the applicant profile
+router.get("/applicant/profile/:id", (req, res) => {
+  User.findOne({ _id: req.params.id })
+    .then(applicant => {
+      ApplicantProfile.findOne({ user: req.params.id })
+        .then(applicantProfile => {
+          res.render("user/applicants/profiles/show", {
+            applicantProfile,
+            applicant
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    })
+    .catch(error => {
+      console.log("cound not find user");
+    });
 });
 
 // POST | process create user profile

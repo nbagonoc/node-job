@@ -84,6 +84,7 @@ const userJobs = require("./routes/user/jobs");
 const guestJobs = require("./routes/guest/jobs");
 const userUsers = require("./routes/user/users");
 const guestUsers = require("./routes/guest/users");
+const userApplications = require("./routes/user/applications");
 
 // USE ROUTES
 // app.use("/admin", admin);
@@ -95,6 +96,7 @@ app.use("/jobs", userJobs);
 app.use("/jobs", guestJobs);
 app.use("/users", userUsers);
 app.use("/users", guestUsers);
+app.use("/applications", userApplications);
 
 // STATIC DIRECTORY
 app.use(express.static(path.join(__dirname, "public")));

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Job = require("../../models/Job");
 const EmployerProfile = require("../../models/EmployerProfile");
+const Application = require("../../models/Application");
 
 // change the main layout to user, isntead of the main layout
 router.all("/*", (req, res, next) => {
@@ -21,21 +22,17 @@ router.get("/", (req, res) => {
 });
 
 // GET | display job
-// router.get("/:id", (req, res) => {
-//   Job.findOne({ _id: req.params.id })
-//     .populate("user")
-//     .then(job => {
-//       res.render("guest/jobs/show", { job });
-//     });
-// });
-
-// GET | display job
 router.get("/:id", (req, res) => {
   Job.findOne({ _id: req.params.id })
     .populate("user")
     .then(job => {
       EmployerProfile.findOne({ user: job.user._id }).then(employerProfile => {
-        res.render("guest/jobs/show", { job, employerProfile });
+        Application.findOne({
+          job: req.params.id,
+          user: (req.user && req.user.id) || null
+        }).then(applicant => {
+          res.render("guest/jobs/show", { job, employerProfile, applicant });
+        });
       });
     });
 });

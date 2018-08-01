@@ -1,0 +1,17 @@
+ {{#if applicant}}
+<div class="card">
+    <div class="card-body">
+        <div class="text-center">
+            <img src="{{applicantProfile.image}}" class="card-img-top">
+            <h4 class="text-capitalize mb-0">{{applicant.firstName}} {{applicant.lastName}}</h4>
+            <p class="mb-0">{{applicant.email}}</p>
+            <p class="mb-0">{{applicantProfile.field}}</p>
+            <p class="mb-0">{{applicantProfile.address}}</p>
+            {{#if applicantProfile.website}}
+            <p class="mb-0">{{applicantProfile.website}}</p>
+            {{/if}}
+        </div>
+        <p class="mt-2">{{applicantProfile.about}}</p>
+    </div>
+</div>
+{{else}} Applicant not found {{/if}}

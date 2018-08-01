@@ -38,7 +38,7 @@ const JobPostSchema = new Schema({
   applicants: [
     {
       type: Schema.Types.ObjectId,
-      ref: "users"
+      ref: "applications"
     }
   ]
 });

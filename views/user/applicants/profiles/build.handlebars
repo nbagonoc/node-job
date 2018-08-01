@@ -1,0 +1,110 @@
+<div class="card">
+    <div class="card-header">
+        Build Profile profile
+    </div>
+    <div class="card-body">
+        {{#if applicantProfile}}
+        <!-- Applicant has already created a profile -->
+        <form action="/users/applicant/profile/build/{{applicantProfile.id}}?_method=PATCH" method="post">
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" name="address" value="{{applicantProfile.address}}" class="form-control" placeholder="Enter address">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="field">Field</label>
+                    <select name="field" class="form-control">
+                        {{#select applicantProfile.field}}
+                        <option disabled selected>Please select</option>
+                        <option value="recruitment">Recruitment</option>
+                        <option value="accounting-finance">Accounting and Finance</option>
+                        <option value="administration-coordination">Administration and Coordination</option>
+                        <option value="architecture-engineering">Architechture and Engineering</option>
+                        <option value="arts-sports">Arts and Sports</option>
+                        <option value="customer-service">Customer Service</option>
+                        <option value="education-training">Education and Training</option>
+                        <option value="health-medical">Health and Medical</option>
+                        <option value="hospitality-tourism">Hospitality and Tourism</option>
+                        <option value="human-resources">Human Resources</option>
+                        <option value="it-software">IT and Software</option>
+                        <option value="legal">Legal</option>
+                        <option value="manufacturing-production">Manufactoring and Production</option>
+                        <option value="media-creatives">Media and Creatives</option>
+                        <option value="safety-security">Safety and Security</option>
+                        <option value="sales-marketing">Sales and Marketing</option>
+                        <option value="supply-chain">Supply Chain</option>
+                        <option value="writing-content">Writing and Content</option>
+                        <option value="others">Others</option>
+                        {{/select}}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="website">Website</label>
+                    <input type="text" name="website" value="{{applicantProfile.website}}" class="form-control" placeholder="Enter website">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="title">Image</label>
+                <input type="file" name="image" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="about">About</label>
+                <textarea type="text" rows="5" name="about" class="form-control" placeholder="Enter content body">{{applicantProfile.about}}</textarea>
+            </div>
+            <button type="submit" class="btn btn-success btn-sm" style="cursor:pointer">Submit</button>
+            <a href="/user/posts" role="button" class="btn btn-danger btn-sm">Cancel</a>
+        </form>
+        {{else}}
+        <!-- Applicant has not made a profile yet -->
+        <form action="/users/applicant/profile/build" method="post">
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" name="address" value="{{address}}" class="form-control" placeholder="Enter address">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="field">Field</label>
+                    <select name="field" class="form-control">
+                        {{#select field}}
+                        <option disabled selected>Please select</option>
+                        <option value="recruitment">Recruitment</option>
+                        <option value="accounting-finance">Accounting and Finance</option>
+                        <option value="administration-coordination">Administration and Coordination</option>
+                        <option value="architecture-engineering">Architechture and Engineering</option>
+                        <option value="arts-sports">Arts and Sports</option>
+                        <option value="customer-service">Customer Service</option>
+                        <option value="education-training">Education and Training</option>
+                        <option value="health-medical">Health and Medical</option>
+                        <option value="hospitality-tourism">Hospitality and Tourism</option>
+                        <option value="human-resources">Human Resources</option>
+                        <option value="it-software">IT and Software</option>
+                        <option value="legal">Legal</option>
+                        <option value="manufacturing-production">Manufactoring and Production</option>
+                        <option value="media-creatives">Media and Creatives</option>
+                        <option value="safety-security">Safety and Security</option>
+                        <option value="sales-marketing">Sales and Marketing</option>
+                        <option value="supply-chain">Supply Chain</option>
+                        <option value="writing-content">Writing and Content</option>
+                        <option value="others">Others</option>
+                        {{/select}}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="contact">Contact</label>
+                    <input type="text" name="contact" value="{{contact}}" class="form-control" placeholder="Enter contact number">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="title">Image</label>
+                <input type="file" name="image" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="about">About</label>
+                <textarea type="text" rows="5" name="about" class="form-control" placeholder="Tell us about yourself">{{about}}</textarea>
+            </div>
+            <button type="submit" class="btn btn-success btn-sm" style="cursor:pointer">Submit</button>
+            <a href="/user/posts" role="button" class="btn btn-danger btn-sm">Cancel</a>
+        </form>
+        {{/if}}
+    </div>
+</div>

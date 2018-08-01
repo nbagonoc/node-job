@@ -11,10 +11,21 @@ router.all("/*", (req, res, next) => {
 
 // GET | display the employer profile
 router.get("/employer/profile/:id", (req, res) => {
-  EmployerProfile.findOne({ user: req.params.id })
-    .populate("user")
-    .then(employerProfile => {
-      res.render("guest/users/profiles/show", { employerProfile });
+  User.findOne({ _id: req.params.id })
+    .then(employer => {
+      EmployerProfile.findOne({ user: req.params.id })
+        .then(employerProfile => {
+          res.render("guest/users/profiles/show", {
+            employerProfile,
+            employer
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    })
+    .catch(error => {
+      console.log("cound not find user");
     });
 });
 
