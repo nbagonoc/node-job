@@ -22,6 +22,6 @@
             </div>
         </div>
     </div>
-    {{else}} No Profile available. {{#if user}} {{#isEqual user.id employer.id}}
+    {{else}} No profile available. {{#if user}} {{#isEqual user.id employer.id}}
     <a href="/users/employer/profile/build" class="btn btn-success btn-sm">Build profile</a> {{/isEqual}} {{/if}} {{/if}} {{else}} Employer does not exist {{/if}}
 </div>

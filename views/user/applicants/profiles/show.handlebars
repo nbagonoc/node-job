@@ -16,7 +16,7 @@
             <i class="fas fa-list mr-2"></i>{{applicantProfile.field}}
         </span>
         <p class="mt-2 font-weight-light">{{applicantProfile.about}}</p>
-        {{else}} No Profile available. {{#isEqual user.id applicant.id}}
+        {{else}} No profile available. {{#isEqual user.id applicant.id}}
         <a href="/users/applicant/profile/build" class="btn btn-success btn-sm">Build profile</a>
         {{/isEqual}} {{/if}} {{else}} Applicant does not exist. {{/if}}
     </div>
