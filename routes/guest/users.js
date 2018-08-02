@@ -25,7 +25,7 @@ router.get("/employer/profile/:id", (req, res) => {
         });
     })
     .catch(error => {
-      console.log("cound not find user");
+      res.render("guest/users/profiles/show");
     });
 });
 

@@ -1,5 +1,5 @@
 <div class="container my-3">
-    {{#if employer}}
+    {{#if employer}} {{#if employerProfile}}
     <div class="row">
         <div class="col-md-4">
             <div class="card sticky-top mb-3">
@@ -22,5 +22,6 @@
             </div>
         </div>
     </div>
-    {{else}} Employer not found {{/if}}
+    {{else}} No Profile available. {{#if user}} {{#isEqual user.id employer.id}}
+    <a href="/users/employer/profile/build" class="btn btn-success btn-sm">Build profile</a> {{/isEqual}} {{/if}} {{/if}} {{else}} Employer does not exist {{/if}}
 </div>
