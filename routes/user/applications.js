@@ -9,7 +9,7 @@ router.all("/*", (req, res, next) => {
   next();
 });
 
-// POST | submit a comment
+// POST | submit an application to job post
 router.post("/apply/:id", (req, res) => {
   Job.findOne({ _id: req.params.id }).then(job => {
     const newApplication = new Application({

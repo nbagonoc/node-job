@@ -1,17 +1,23 @@
- {{#if applicant}}
 <div class="card">
     <div class="card-body">
+        {{#if applicant}} {{#if applicantProfile}}
         <div class="text-center">
-            <img src="{{applicantProfile.image}}" class="card-img-top">
+            <img src="{{applicantProfile.image}}" class="rounded-circle" style="height:150px; width:150px">
             <h4 class="text-capitalize mb-0">{{applicant.firstName}} {{applicant.lastName}}</h4>
             <p class="mb-0">{{applicant.email}}</p>
-            <p class="mb-0">{{applicantProfile.field}}</p>
-            <p class="mb-0">{{applicantProfile.address}}</p>
-            {{#if applicantProfile.website}}
-            <p class="mb-0">{{applicantProfile.website}}</p>
-            {{/if}}
         </div>
-        <p class="mt-2">{{applicantProfile.about}}</p>
+        <span class="d-block">
+            <i class="fas fa-map-marker-alt mr-2"></i>{{applicantProfile.address}}
+        </span>
+        <span class="d-block">
+            <i class="fas fa-mobile-alt mr-2"></i>{{applicantProfile.contact}}
+        </span>
+        <span class="d-block">
+            <i class="fas fa-list mr-2"></i>{{applicantProfile.field}}
+        </span>
+        <p class="mt-2 font-weight-light">{{applicantProfile.about}}</p>
+        {{else}} No Profile available. {{#isEqual user.id applicant.id}}
+        <a href="/users/applicant/profile/build" class="btn btn-success btn-sm">Build profile</a>
+        {{/isEqual}} {{/if}} {{else}} Applicant does not exist. {{/if}}
     </div>
 </div>
-{{else}} Applicant not found {{/if}}

@@ -40,11 +40,97 @@ router.get("/applicant/profile/:id", (req, res) => {
         });
     })
     .catch(error => {
-      console.log("cound not find user");
+      res.render("guest/applicants/profiles/show");
     });
 });
 
-// POST | process create user profile
+// POST | process create applicant profile
+router.post("/applicant/profile/build", (req, res) => {
+  const { address, field, contact, image, about } = req.body;
+
+  // validator
+  req.checkBody("address", "Address is required").notEmpty();
+  req.checkBody("field", "Field is required").notEmpty();
+  req.checkBody("contact", "Contact is required").notEmpty();
+  req.checkBody("about", "About is required").notEmpty();
+
+  const errors = req.validationErrors();
+
+  if (errors) {
+    res.render("user/applicants/profiles/build", {
+      errors,
+      address,
+      field,
+      contact,
+      image,
+      about
+    });
+  } else {
+    const newApplicantProfile = new ApplicantProfile({
+      user: req.user.id,
+      address,
+      field,
+      contact,
+      image: "http://via.placeholder.com/250x200",
+      about
+    });
+
+    newApplicantProfile
+      .save()
+      .then(applicantProfile => {
+        req.flash("success_message", "Successfully saved profile");
+        res.redirect(`/users/applicant/profile/${req.user.id}`);
+      })
+      .catch(err => {
+        console.log(err);
+        return;
+      });
+  }
+});
+
+// PATCH | process update applicant profile
+router.patch("/applicant/profile/build/:id", (req, res) => {
+  ApplicantProfile.findOne({ _id: req.params.id }).then(applicantProfile => {
+    applicantProfile.address = req.body.address;
+    applicantProfile.field = req.body.field;
+    applicantProfile.contact = req.body.contact;
+    applicantProfile.image = req.body.image;
+    applicantProfile.about = req.body.about;
+
+    // validator
+    req.checkBody("address", "Address is required").notEmpty();
+    req.checkBody("field", "Field is required").notEmpty();
+    req.checkBody("about", "About is required").notEmpty();
+
+    const errors = req.validationErrors();
+
+    if (errors) {
+      res.render("user/applicants/profiles/build", {
+        errors,
+        address,
+        field,
+        contact,
+        image: "http://via.placeholder.com/250x200",
+        about
+      });
+      // console.log("there is an error");
+    } else {
+      applicantProfile
+        .save()
+        .then(applicantProfile => {
+          req.flash("success_message", "Successfully saved profile");
+          res.redirect("/dashboard");
+        })
+        .catch(err => {
+          console.log(err);
+          return;
+        });
+      // console.log("there is no error");
+    }
+  });
+});
+
+// POST | process create employer profile
 router.post("/employer/profile/build", (req, res) => {
   const { address, field, website, image, about } = req.body;
 
@@ -87,7 +173,7 @@ router.post("/employer/profile/build", (req, res) => {
   }
 });
 
-// PATCH | process update user profile
+// PATCH | process update employer profile
 router.patch("/employer/profile/build/:id", (req, res) => {
   EmployerProfile.findOne({ user: req.user.id }).then(employerProfile => {
     employerProfile.address = req.body.address;

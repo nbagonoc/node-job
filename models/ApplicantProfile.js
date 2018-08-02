@@ -7,13 +7,16 @@ const ApplicantProfileSchema = new Schema({
     ref: "users"
   },
   image: {
-    type: String,
-    required: true
+    type: String
   },
   contact: {
     type: Number
   },
   address: {
+    type: String,
+    required: true
+  },
+  field: {
     type: String,
     required: true
   },
